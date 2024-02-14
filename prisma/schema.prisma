@@ -21,12 +21,14 @@ model Avatars {
 }
 
 model User {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String @unique
-  password  String
-  avatar    Avatars?
-  role      Role  @default(User)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String @unique
+  phone_number Float @unique
+  address      String?
+  password     String
+  avatar       Avatars?
+  role         Role  @default(User)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
