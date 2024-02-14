@@ -33,7 +33,14 @@ export class UsersService {
   // get all-user service
 
   async getUsers(){
-    const users = []
+    const users = [
+      {
+        id: "1234", 
+        name: "test",
+        email: "abc@gmail.com", 
+        password: "12345678"
+      }
+    ]
     return users
   }
 }
