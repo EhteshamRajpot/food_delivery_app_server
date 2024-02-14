@@ -23,7 +23,7 @@ model Avatars {
 model User {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  email     String
+  email     String @unique
   password  String
   avatar    Avatars?
   role      Role  @default(User)
