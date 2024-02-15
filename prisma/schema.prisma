@@ -24,7 +24,7 @@ model User {
   id           String @id @default(auto()) @map("_id") @db.ObjectId
   name         String
   email        String @unique
-  phone_number Float @unique
+  phone_number Float?
   address      String?
   password     String
   avatar       Avatars?
