@@ -11,7 +11,7 @@ export class RegisterDto {
     @Field()
     @IsNotEmpty({ message: "Password is required" })
     @MinLength(8, { message: "Password must be at least 8 characters" })
-    password: string
+    password: string;
 
     @Field()
     @IsNotEmpty({ message: "Email is required" })
@@ -33,7 +33,7 @@ export class ActivationDto {
     @Field()
     @IsNotEmpty({ message: "Activation Code is required." })
     activationCode: string;
-}
+} 
 
 @InputType()
 export class LoginDto {

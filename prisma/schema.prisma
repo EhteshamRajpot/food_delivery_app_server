@@ -31,4 +31,5 @@ model User {
   role         Role  @default(User)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  @@unique([email, phone_number], name: "unique_email_phone_number")
 }

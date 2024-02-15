@@ -1,3 +1,4 @@
+import { TokenSender } from './utils/sendToken';
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtVerifyOptions } from '@nestjs/jwt';
@@ -121,23 +122,37 @@ export class UsersService {
       data: {
         name,
         email,
-        password, 
+        password,
         phone_number,
         address: "No Address Provided",
       }
     })
 
-    return { user, response }  
+    return { user, response }
   }
 
   // login user service
   async Login(loginDto: LoginDto) {
     const { email, password } = loginDto;
-    const user = {
-      email,
-      password
-    };
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email,
+      }
+    })
+
+    if (user && (await this.comparePassword(password, user.password))) {
+      const tokenSender = new TokenSender(this.configService);
+      tokenSender.sendToken(user)
+    } else {
+      throw new BadRequestException("Invalid credentials")
+    }
+
     return user
+  }
+
+  // compare with hashed password
+  async comparePassword(password: string, hashedPassword: string): Promise<boolean> {
+    return await bcrypt.compare(password, hashedPassword)
   }
 
   // get all-user service
