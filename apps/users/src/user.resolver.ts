@@ -55,19 +55,20 @@ export class UsersResolver {
         return await this.userService.getLoggedInUser(context.req);
     }
 
-    @Query(() => ForgotPasswordResponse)
+    @Mutation(() => ForgotPasswordResponse)
     async forgotPassword(
-        @Args('forgotPasswordDto') forgotPasswordDto: ForgotPasswordDto,
+      @Args('forgotPasswordDto') forgotPasswordDto: ForgotPasswordDto,
     ): Promise<ForgotPasswordResponse> {
-        return await this.userService.forgotPassword(forgotPasswordDto);
+      return await this.userService.forgotPassword(forgotPasswordDto);
     }
-
-    @Query(() => ResetPasswordResponse)
+  
+    @Mutation(() => ResetPasswordResponse)
     async resetPassword(
-        @Args('resetPasswordDto') resetPasswordDto: ResetPasswordDto,
+      @Args('resetPasswordDto') resetPasswordDto: ResetPasswordDto,
     ): Promise<ResetPasswordResponse> {
-        return await this.userService.resetPassword(resetPasswordDto);
+      return await this.userService.resetPassword(resetPasswordDto);
     }
+  
 
     @Query(() => LogoutResposne)
     @UseGuards(AuthGuard)
