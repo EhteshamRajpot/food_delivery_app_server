@@ -69,7 +69,6 @@ export class UsersResolver {
       return await this.userService.resetPassword(resetPasswordDto);
     }
   
-
     @Query(() => LogoutResposne)
     @UseGuards(AuthGuard)
     async logOutUser(@Context() context: { req: Request }) {
